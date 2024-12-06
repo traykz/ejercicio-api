@@ -1,24 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import Navbar from "./components/Navbar";
+
+import Home from "./Pages/Home";
+import ProductList from "./Pages/ProductList";
+import Login from "./Pages/Login";
+import {useSelector} from "react-redux";
+import ProductDetail from "./components/productDetail";
+import RouteInterceptor from "./components/RouteInterceptor";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    const isLogged = useSelector((state) => state.auth.isLogged);
+
+   return (
+      <BrowserRouter>
+          {isLogged && <Navbar/>}
+               <Routes>
+                   <Route path="login" element={<Login />} />
+                   <Route path="/" element={isLogged ? <Navigate to="/home" /> : <Login />} />
+                   <Route path="home" element={isLogged ? <Home /> : <Login />} />
+                   <Route path="products" element={isLogged ? <ProductList /> : <Login />} />
+                   <Route path="product-detail/:id"  element={isLogged ? <RouteInterceptor component={ProductDetail} /> : <Login />} />
+               </Routes>
+      </BrowserRouter>
   );
 }
 

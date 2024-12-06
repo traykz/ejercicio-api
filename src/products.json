@@ -1,0 +1,8 @@
+[
+  { "id": 1, "name": "T-shirt White Tommy Hilfiger", "price": 20 },
+  { "id": 2, "name": "T-shirt Black Tommy Hilfiger", "price": 30 },
+  { "id": 3, "name": "Jeans American Eagle", "price": 40 },
+  { "id": 4, "name": "T-shirt Lacoste", "price": 30 },
+  { "id": 5, "name": "T-shirt Blue Lacoste", "price": 60 },
+  { "id": 6, "name": "Jacket Armani Exchange", "price": 100 }
+]
